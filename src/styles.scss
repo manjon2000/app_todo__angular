@@ -1,8 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-    --bs-body-bg: #cece;
+    --bs-body-bg: #FFFFFF;
+    ;
+    --bs-body-font-family: 'Titillium Web', sans-serif;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0 !important;
 }
 
 p {
     margin: 0 !important;
+}
+
+
+.text-success-100 {
+    color: #46A094;
+    font-weight: bold;
 }

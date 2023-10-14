@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "todo-app": {
+    "04.todo-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -37,7 +37,6 @@
           },
           "configurations": {
             "production": {
-              "baseHref": "/app_todo__angular/",
               "budgets": [
                 {
                   "type": "initial",
