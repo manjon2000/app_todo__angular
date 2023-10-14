@@ -1,0 +1,30 @@
+<h1 class="text-center text-primary pt-4">TODO APP</h1>
+<div class="todo">
+    <div class="todo__wrapper">
+        <form class="todo__create" (submit)="handleSubmitTodo($event)">
+            <button type="submit" class="fas fa-save todo__create-icon"></button>
+            <input type="text" placeholder="Insert you task" [formControl]="nameTodo">
+        </form>
+        <div class="todo__list">
+                <div *ngFor="let item of data">
+                <app-todo-item 
+                    [todo]="item"
+                />
+            </div>
+        </div>
+    </div>
+    <div class="todo__footer">
+        <p class="m-0">{{data.length}} items left</p>
+        <div class="todo__filter">
+            <button *ngFor="let filter of filters" (click)="handleClickFilter(filter)" 
+                class="btn btn-link"
+                [ngClass]="{
+                    'active': filter === filterSelect
+                }">
+                {{filter}}
+            </button>
+        </div>
+        <button (click)="clearComplet()" class="btn btn-link">Clear completed</button>
+    </div>
+</div>
+<app-loading *ngIf="loading" />

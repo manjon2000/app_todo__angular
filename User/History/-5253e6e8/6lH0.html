@@ -1,0 +1,13 @@
+<div class="todo-item">
+    <label [for]="todo.id" class="todo-item__checked">
+        <input 
+            [formControl]="inputCheckbox"
+            type="checkbox" [id]="todo.id" 
+        />
+        <em class="fas fa-check todo-item__icon-check"></em>
+    </label>
+    <p class="todo-item__title"  [ngClass]="{
+        'todo-item__title--completed': todo.isCompleted
+    }">{{ todo.name }}</p>
+    <em class="fas fa-trash todo-item__icon-trash"></em>
+</div>
