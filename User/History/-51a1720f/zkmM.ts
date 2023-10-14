@@ -1,1 +1,0 @@
-export type Filter = null | 'ACTIVE' | 'COMPLETED'; 
