@@ -1,10 +1,19 @@
-<h1 class="text-center text-primary pt-4">TODO APP</h1>
 <div class="todo">
+    <h1 class="text-success-100 mb-1">TODO APP</h1>
+    <p class="todo__description mb-4"><b>TODO MONDEY</b> es tu compañero perfecto para mantener tus tareas y actividades diarias bajo control. Ya sea que necesites gestionar tus proyectos laborales, recordar las compras del supermercado o simplemente mantener un registro de tus pendientes personales, nuestra aplicación de lista de tareas te ayuda a simplificar tu vida y ser más productivo.</p>
     <div class="todo__wrapper">
         <div class="todo__create">
-            <em (click)="markAllCompleted()" class="fas fa-chevron-down todo__create-icon"></em>
-            <form (submit)="handleSubmitTodo($event)">
+            <div class="todo__create-button-select-all"
+            [ngClass]="{
+                'todo__create-button-select-all--actived': allItemsCompleted
+            }"
+            (click)="markAllCompleted()">
+            <em class="fas fa-check todo__create-button-select-all__icon">
+            </em>
+            </div>
+            <form class="todo__create-form" (submit)="handleSubmitTodo($event)">
                 <input type="text" placeholder="Insert you task" [formControl]="nameTodo">
+                <button type="submit" class="fas fa-paper-plane todo__create-form__button"></button>
             </form>
         </div>
         <div class="todo__list">
@@ -13,7 +22,7 @@
     </div>
     <div class="todo__footer">
        <!--  <p class="m-0">{{data.length}} items left</p> -->
-       <p class="m-0">{{data.length}} items left</p>
+       <p class="todo__footer__count">{{data.length}} items left</p>
         <div class="todo__filter">
             <button *ngFor="let filter of filters" (click)="handleClickFilter(filter)" 
                 class="btn btn-link"
@@ -22,10 +31,9 @@
                 {{filter}}
             </button>
         </div>
-        <button (click)="clearComplet()" class="btn btn-link">Clear completed</button>
+        <p (click)="clearComplet()" class="todo__footer__clear-completed">Clear completed</p>
     </div>
 </div>
-<app-loading *ngIf="loading" />
 
 
 <ng-template #listTodo>

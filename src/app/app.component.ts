@@ -13,23 +13,23 @@ import { Filter } from './filters/filters.interface';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnChanges {
-  title = '04.todo-app';
-  loading: boolean = true;
+  title = 'todo-app';
   data: todoModel[] = [];
   filters: Filter[] = [
     'ALL',
     'ACTIVE',
     'COMPLETED'
-  ] 
+  ];
   filterSelect: Filter = 'ALL';
 
   nameTodo = new FormControl('', Validators.required); 
+
+  allItemsCompleted: boolean = false;
 
   constructor(private store: Store<AppState>) {
     
     this.store.select('todo').subscribe(todos => {
       this.data = Array.from(todos);
-      this.loading = false
     })
 
     this.store.select('filter').subscribe(filters => {
@@ -45,14 +45,15 @@ export class AppComponent implements OnInit, OnChanges {
 
     event.preventDefault();
 
-    const name = this.nameTodo.value?.toString()
-
-    if(name && !this.nameTodo.invalid) 
-      this.store.dispatch( addTodo( new todoModel(name)))
-
-    if(this.nameTodo.invalid) 
+    if(this.nameTodo.invalid) {
       return;
+    }
 
+    const name = this.nameTodo.value?.toString()
+    if(name && !this.nameTodo.invalid) {
+      this.store.dispatch( addTodo( new todoModel(name)))
+      this.allItemsCompleted = false;
+    }
   }
 
   handleClickFilter(event: Filter): void {
@@ -65,6 +66,9 @@ export class AppComponent implements OnInit, OnChanges {
     this.store.dispatch(
       allTodoCompleted()
     );
+    if(this.allItemsCompleted !== true) {
+      this.allItemsCompleted = !this.allItemsCompleted; 
+    }
   }
   clearComplet(): void {
     this.store.dispatch(

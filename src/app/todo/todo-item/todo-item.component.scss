@@ -1,10 +1,18 @@
 .todo-item {
     width: 100%;
+    min-height: 70px;
     height: max-content;
     display: grid;
-    grid-template-columns: 30px auto 30px;
+    grid-template-columns: 30px minmax(100px, 1fr) 30px;
+    grid-template-rows: auto;
+    margin-bottom: 1rem;
     gap: 1rem;
-    padding: 1rem 0rem;
+    padding: 1rem 1rem;
+    //background-color: #FFF;
+    border: 2px solid #505050;
+    background: linear-gradient(45deg, #6BBD99, #AECFA4, #C4E8C2);
+    border-radius: 4px;
+    user-select: nones;
 
     &__checked {
         width: 30px;
@@ -19,7 +27,7 @@
             display: none;
             &:checked {
                 & + .todo-item__icon-check{
-                    color: green;
+                    color: #C4E8C2;
                     transform: scale(1);
                 }
             }
@@ -31,22 +39,15 @@
     }
 
     &__title {
-        width: max-content;
+        width: 100%;
         height: max-content;
         position: relative;
+        font-size: .9rem;
+        line-height: .9rem;
+        color: #454545;
         &--completed {
             color: #dedede;
-
-            &::after {
-                content: '';
-                position: absolute;
-                width: 100%;
-                height: 2px;
-                background-color: #bbbbbb;
-                top: 45%;
-                transform: translate(0%, -50%);
-                left: 0;
-            }
+            text-decoration: line-through;
         }
     }
 
@@ -57,9 +58,11 @@
             transform: scale(0);
         }
         &-trash {
+            justify-self: center;
+            align-self: center;
             transition: cubic-bezier(0.165, 0.84, 0.44, 1) .3s;
             transform: scale(0.95);
-            color: #af5b5e;
+            color: #A72A0F;
             cursor: pointer;
             &:hover {
                 transform: scale(1);

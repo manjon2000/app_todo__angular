@@ -4,9 +4,15 @@
     height: max-content;
     margin: 0 auto;
     padding: 1rem .5rem;
-    border-radius: 4px;
-    border: 1px solid #eee;
-    background-color: #FFF;
+    &__description {
+        font-family: 'Open Sans', sans-serif;
+        font-size: .75rem;
+        line-height: 1rem;
+        color: #505050;
+        @media (min-width: 640px) {
+            max-width: 100%;
+        }
+    }
     &__wrapper {
         width: 100%;
         display: flex;
@@ -16,11 +22,9 @@
     &__create {
         width: inherit;
         display: grid;
-        grid-template-columns: 30px auto;
+        grid-template-columns: 40px auto;
         align-items: center;
-        gap: 1rem;
-        padding-bottom: .5rem;
-        border-bottom: 1px solid #CECECE;
+        gap: .5rem;
         &-icon {
             width: 100%;
             height: 100%;
@@ -38,17 +42,83 @@
                 color:#DEDEDE;
             }
         }
+        &-button-select-all {
+         width: 100%;
+         height: 40px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         border: 2px solid #505050;
+         background-color: white;
+         color: #46A094;
+         cursor: pointer;
 
-        input[type="text"] {
-            width: 100%;
-            border: none;
-            outline: none;
+         &--actived {
+            background-color: #46A094;
+            color: white;
+         }
         }
+        &-form {
+            display: grid;
+            grid-template-columns: auto 40px;
+            gap: .5rem;
+
+            input[type="text"] {
+                width: 100%;
+                height: 40px;
+                border: none;
+                outline: none;
+                border: 2px solid #505050;
+                background-color: #46A094;
+                padding: .8rem;
+                color: white;
+    
+                &::placeholder {
+                    color: white;
+                }
+            }
+
+            &__button {
+                width: 100%;
+                height: 40px;
+                border: none;
+                outline: none;
+                border: 2px solid #505050;
+                background-color: #FFF;
+                color: #46A094;
+            }
+        }
+        
     }
     &__footer {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: space-between;
+        gap: 1rem;
+
+        @media (min-width: 640px) {
+            flex-direction: row;
+        }
+
+        &__count {
+            font-family: 'Open Sans', sans-serif;
+            font-size: .8rem;
+            justify-self: center;
+            align-self: center;
+            color: #505050;
+        }
+        &__clear-completed {
+            font-family: 'Open Sans', sans-serif;
+            font-size: .8rem;
+            color: #46A094;
+            transition:  ease-in-out .25s;
+            &:hover {
+                cursor: pointer;
+                color: #505050;
+                text-decoration: underline;
+            }
+        }
     }
 }
 
@@ -57,7 +127,8 @@
     --bs-btn-border-color: transparent;
     --bs-btn-color: #777;
     text-decoration: none;
-
+    border-width: 2px;
+    padding: .2rem 1rem;
     &:hover,
     &:focus,
     &:active {
@@ -65,10 +136,33 @@
     }
 
     &.active {
-        border: 1px solid rgba(175, 47, 47, 0.2);
-        color: #777;
+        border: 2px solid #505050;
+        background-color: #46A094;
+        color: #fff;
         &:hover {
             color: #555;
         }  
     }
 }
+
+/*
+            width: 20px;
+            height: 20px;
+            align-self: center;
+            justify-self: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #CECECE;
+            border-radius: 50px;
+            &__icon {
+                font-size: .8rem;
+                color: green;
+                transform: scale(0);
+                transition: transform cubic-bezier(0.23, 1, 0.320, 1) 1s;
+                &--active {
+                    transition: transform cubic-bezier(0.23, 1, 0.320, 1) 1s;
+                    transform: scale(1);
+                }
+            }
+*/
